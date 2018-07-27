@@ -10,107 +10,107 @@ using webBookReservation2.Models;
 
 namespace webBookReservation2.Controllers
 {
-    public class StudentController : Controller
+    public class BookController : Controller
     {
         private ReservationContext db = new ReservationContext();
 
-        // GET: Student
+        // GET: Book
         public ActionResult Index()
         {
-            return View(db.Student.ToList());
+            return View(db.Book.ToList());
         }
 
-        // GET: Student/Details/5
+        // GET: Book/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
-            if (student == null)
+            Book book = db.Book.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(book);
         }
 
-        // GET: Student/Create
+        // GET: Book/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Student/Create
+        // POST: Book/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,SName,Grade")] Student student)
+        public ActionResult Create([Bind(Include = "ISBN,Title,Detail")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Student.Add(student);
+                db.Book.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(student);
+            return View(book);
         }
 
-        // GET: Student/Edit/5
+        // GET: Book/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
-            if (student == null)
+            Book book = db.Book.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(book);
         }
 
-        // POST: Student/Edit/5
+        // POST: Book/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,SName,Grade")] Student student)
+        public ActionResult Edit([Bind(Include = "ISBN,Title,Detail")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(student).State = EntityState.Modified;
+                db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View(book);
         }
 
-        // GET: Student/Delete/5
+        // GET: Book/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student student = db.Student.Find(id);
-            if (student == null)
+            Book book = db.Book.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(student);
+            return View(book);
         }
 
-        // POST: Student/Delete/5
+        // POST: Book/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Student student = db.Student.Find(id);
-            db.Student.Remove(student);
+            Book book = db.Book.Find(id);
+            db.Book.Remove(book);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

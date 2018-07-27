@@ -18,5 +18,7 @@ namespace webBookReservation2.Models
         public string Date { get; set; }
 
         public virtual Book Book { get; set; }
+        public virtual Student Student { get; set; }
+
     }
 }
